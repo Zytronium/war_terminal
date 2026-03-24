@@ -10,6 +10,7 @@ export function create_unit(id: string): Unit | undefined {
             attack: 20,
             defense: 25,
             speed: 2,
+            class: "melee",
             ability: "+15% attack against other ground units",
             special: "Raid",
             special_description: "Can invade and storm a building to deal significant damage to the building."
@@ -22,9 +23,23 @@ export function create_unit(id: string): Unit | undefined {
             attack: 60,
             defense: 150,
             speed: 3,
+            class: "melee",
             ability: "+25% defense against soldier units but cannot fire at aerial units.",
             special: "Pin Down",
             special_description: "Can force adjacent enemy units into a defensive posture for 2 turns, halving their attack, preventing them from using abilities, and preventing them from moving."
+        },
+        {
+            id: "mobile_sam",
+            name: "Mobile SAM",
+            description: "A mobile surface-to-air unit for combatting aerial units.",
+            cost: 80,
+            attack: 100,
+            defense: 90,
+            speed: 3,
+            class: "anti-air",
+            ability: "+80% attack against aerial units but -80% attack against buildings and ground units",
+            special: "Iron Dome",
+            special_description: "All missiles and Air Strike specials launching or targeting anywhere in a 4-tile radius from here for the next 2 turns will be intercepted and not reach their target."
         },
         {
             id: "attack_helicopter",
@@ -34,6 +49,7 @@ export function create_unit(id: string): Unit | undefined {
             attack: 65,
             defense: 100,
             speed: 5,
+            class: "aerial",
             ability: "Immune to Pin Down special. Takes -20% damage from ground units. Can move 1 tile after attacking.",
             special: "Strafe Run",
             special_description: "Can move in and deal heavy damage to a group of enemy units while taking minimal damage."
@@ -46,22 +62,24 @@ export function create_unit(id: string): Unit | undefined {
             attack: 145,
             defense: 125,
             speed: 8,
+            class: "aerial",
             ability: "Immune to Pin Down special. Takes -75% damage from ground units.",
             special: "Air Strike",
             special_description: "Can perform a powerful ranged attack on a building, dealing extreme damage or entirely destroying it."
         },
         {
-            id: "mobile_sam",
-            name: "Mobile SAM",
-            description: "A mobile surface-to-air unit for combatting aerial units.",
-            cost: 80,
-            attack: 100,
-            defense: 90,
-            speed: 3,
-            ability: "+80% attack against aerial units but -80% attack against buildings and ground units",
-            special: "Iron Dome",
-            special_description: "All missiles and Air Strike specials launching or targeting anywhere in a 4-tile radius from here for the next 2 turns will be intercepted and not reach their target."
-        },
+            id: "giant_death_robot",
+            name: "Giant Death Robot",
+            description: "The mother of all robots, capable of destroying entire cities with ease. Cannot be built without a fortress.",
+            cost: 2_500,
+            attack: 300,
+            defense: 750,
+            speed: 4,
+            class: "melee",
+            ability: "Immune to Pin Down special. Can attack twice in one turn.",
+            special: "Doomsday",
+            special_description: "Bring about a small-scale doomsday on the area, destroying all buildings and units of BOTH sides within a 5 tile radius EXCEPT Capital Bases."
+        }
     ];
 
     return units.find(unit => unit.id === id);
@@ -75,6 +93,13 @@ export function create_building(id: string): Building | undefined {
             description: "A silo that can launch missiles at enemy units and buildings.",
             cost: 50,
             hp: 50,
+        },
+        {
+            id: "factory",
+            name: "Factory",
+            description: "A factory that speeds up production of units and buildings by 25 per turn.",
+            cost: 100,
+            hp: 100
         },
         {
             id: "small_encampment",
