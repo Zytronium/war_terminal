@@ -73,7 +73,7 @@ export function create_building(id: string): Building | undefined {
             id: "missile_silo",
             name: "Missile Silo",
             description: "A silo that can launch missiles at enemy units and buildings.",
-            cost: 100,
+            cost: 50,
             hp: 50,
         },
         {
@@ -97,6 +97,13 @@ export function create_building(id: string): Building | undefined {
             cost: 500,
             hp: 750,
         },
+        {
+            id: "capital_base",
+            name: "Capital Base",
+            description: "The home base of this player. If destroyed, the owner looses the game.",
+            cost: 0,
+            hp: 10_000
+        }
     ];
 
     return buildings.find(building => building.id === id);
