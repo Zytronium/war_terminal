@@ -78,7 +78,7 @@ export function create_unit(id: string): Unit | undefined {
             class: "melee",
             ability: "Immune to Pin Down special. Can attack twice in one turn.",
             special: "Doomsday",
-            special_description: "Bring about a small-scale doomsday on the area, destroying all buildings and units of BOTH sides within a 5 tile radius EXCEPT Capital Bases."
+            special_description: "Bring about a small-scale doomsday on the area, destroying all buildings and units of BOTH sides within a 5 tile radius EXCEPT Capital Bases. Cooldown is triple duration (15 turns)."
         }
     ];
 
