@@ -1,4 +1,4 @@
-import {Building, Unit} from "@/types";
+import {Building, Owner, Unit} from "@/types";
 
 export function create_unit(id: string): Unit | undefined {
     const units: Unit[] = [
@@ -91,6 +91,7 @@ export function create_building(id: string): Building | undefined {
             id: "missile_silo",
             name: "Missile Silo",
             description: "A silo that can launch missiles at enemy units and buildings.",
+            icon: "silo.png",
             cost: 50,
             hp: 50,
         },
@@ -98,6 +99,7 @@ export function create_building(id: string): Building | undefined {
             id: "factory",
             name: "Factory",
             description: "A factory that speeds up production of units and buildings by 25 per turn.",
+            icon: "factory.png",
             cost: 100,
             hp: 100
         },
@@ -105,6 +107,7 @@ export function create_building(id: string): Building | undefined {
             id: "small_encampment",
             name: "Small Encampment",
             description: "A small encampment of troops. Allows training new units but can only train one at a time.",
+            icon: "encampment_sm.png",
             cost: 150,
             hp: 200,
         },
@@ -112,6 +115,7 @@ export function create_building(id: string): Building | undefined {
             id: "large_encampment",
             name: "Large Encampment",
             description: "A large encampment of troops. Allows training new units and comes with some units when built. Can train two units at a time.",
+            icon: "encampment_lg.png",
             cost: 250,
             hp: 300,
         },
@@ -119,6 +123,7 @@ export function create_building(id: string): Building | undefined {
             id: "fortress",
             name: "Fortress",
             description: "A very large, heavily fortified military base for training units that comes with some units when built. Can train up to four units at a time and is capable of launching short-range missiles.",
+            icon: "fortress.png",
             cost: 500,
             hp: 750,
         },
@@ -126,10 +131,19 @@ export function create_building(id: string): Building | undefined {
             id: "capital_base",
             name: "Capital Base",
             description: "The home base of this player. If destroyed, the owner looses the game.",
+            icon: "capital.png",
             cost: 0,
             hp: 10_000
         }
     ];
 
     return buildings.find(building => building.id === id);
+}
+
+export function ownerFilter(owner: Owner): string {
+    const matrix = owner === "player"
+        ? "0 0 0 0 0  0 0 0 1 0  0 0 0 1 0  0 0 0 1 0"  // Cyan  #00FFFF
+        : "0 0 0 1 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0"; // Red   #FF0000
+
+    return `url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'><filter id='c'><feColorMatrix type='matrix' values='${matrix}'/></filter></svg>#c")`;
 }

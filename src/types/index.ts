@@ -2,6 +2,7 @@ export type Building = {
     id: string;
     name: string;
     description: string;
+    icon: string;
     cost: number;
     hp: number;
 }
@@ -18,4 +19,13 @@ export type Unit = {
     ability: string;     // Always active ability of this unit.
     special: string;     // Special ability of this unit. It takes 3 units together to trigger an ability. Ability cooldowns (for all 3 units) last 5 turns.
     special_description: string;
+}
+
+export type Owner = "player" | "enemy";
+
+export interface PlacedBuilding {
+    buildingId: string;
+    owner: Owner;
+    row: number;
+    col: number;
 }
